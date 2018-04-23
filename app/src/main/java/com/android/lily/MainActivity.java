@@ -6,6 +6,7 @@ import android.view.View;
 
 import com.android.lily.business.ApiService;
 import com.android.lily.model.Logistics;
+import com.android.lily.network.RetrofitManager;
 
 import java.io.IOException;
 
@@ -37,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
      */
     public void request(View view) {
         getKd_2();
+//        RetrofitManager.getRetrofit()
     }
 
     /**
