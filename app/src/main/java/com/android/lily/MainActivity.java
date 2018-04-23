@@ -2,6 +2,7 @@ package com.android.lily;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.android.lily.business.ApiService;
@@ -38,7 +39,6 @@ public class MainActivity extends AppCompatActivity {
      */
     public void request(View view) {
         getKd_2();
-//        RetrofitManager.getRetrofit()
     }
 
     /**
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                 try {
-                    android.util.Log.w(TAG, response.body().string());
+                    Log.w(TAG, response.body().string());
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -99,6 +99,7 @@ public class MainActivity extends AppCompatActivity {
      * 查询快递信息
      */
     private void getKd_2() {
+        Log.w(TAG, "Retrofit = " + RetrofitManager.getRetrofit());
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://www.kuaidi100.com/")
                 .addConverterFactory(GsonConverterFactory.create())
@@ -108,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
         repos.enqueue(new Callback<Logistics>() {
             @Override
             public void onResponse(Call<Logistics> call, Response<Logistics> response) {
-                android.util.Log.w(TAG, response.body().getNu());
+                Log.w(TAG, response.body().getNu());
             }
 
             @Override
