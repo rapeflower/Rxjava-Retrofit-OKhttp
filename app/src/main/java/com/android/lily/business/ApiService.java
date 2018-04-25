@@ -2,6 +2,7 @@ package com.android.lily.business;
 
 import com.android.lily.model.Logistics;
 
+import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.GET;
@@ -26,7 +27,6 @@ public interface ApiService {
     /**
      * 查询快递数据
      * <p>返回原始数据</p>
-     *
      * @param type
      * @param postid
      * @return
@@ -42,4 +42,13 @@ public interface ApiService {
      */
     @GET("query")
     Call<Logistics> getLogistics(@Query("type") String type, @Query("postid") String postid);
+
+    /**
+     * 查询快递数据
+     * @param type
+     * @param postid
+     * @return
+     */
+    @GET("query")
+    Observable<Logistics> getLogisticsByRx(@Query("type") String type, @Query("postid") String postid);
 }

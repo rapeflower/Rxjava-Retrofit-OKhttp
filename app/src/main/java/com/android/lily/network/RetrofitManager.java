@@ -8,7 +8,7 @@ import javax.net.ssl.SSLSession;
 
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
@@ -68,7 +68,7 @@ public class RetrofitManager {
                 // 添加数据解析ConverterFactory
                 .addConverterFactory(GsonConverterFactory.create())
                 // 添加RxJava
-                .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .build();
     }
 

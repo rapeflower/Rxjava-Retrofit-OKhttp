@@ -11,6 +11,11 @@ import com.android.lily.network.RetrofitManager;
 
 import java.io.IOException;
 
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -38,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void request(View view) {
-        getKd_2();
+        getKd_3();
     }
 
     /**
@@ -117,5 +122,38 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+    }
+
+    /**
+     * 查询快递信息
+     */
+    private void getKd_3() {
+        ApiService apiService = RetrofitManager.getRetrofit().create(ApiService.class);
+        Observable<Logistics> observable = apiService.getLogisticsByRx("zhongtong", "474944203605");
+        // 请求网络切换异步线程（IO线程）
+        observable.subscribeOn(Schedulers.io())
+                // 响应结果处理切换到主线程
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Observer<Logistics>() {
+                    @Override
+                    public void onSubscribe(Disposable d) {
+
+                    }
+
+                    @Override
+                    public void onNext(Logistics logistics) {
+                        Log.w(TAG, "result = " + logistics.getNu());
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onComplete() {
+
+                    }
+                });
     }
 }
