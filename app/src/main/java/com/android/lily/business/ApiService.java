@@ -1,11 +1,15 @@
 package com.android.lily.business;
 
+import com.android.lily.model.BaseEntity;
 import com.android.lily.model.Logistics;
 
 import io.reactivex.Observable;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -51,4 +55,14 @@ public interface ApiService {
      */
     @GET("query")
     Observable<Logistics> getLogisticsByRx(@Query("type") String type, @Query("postid") String postid);
+
+    /**
+     * 查询快递数据
+     * @param type
+     * @param postid
+     * @return
+     */
+    @FormUrlEncoded
+    @POST("query")
+    Observable<Logistics> hqLogisticsBy(@Field("type") String type, @Field("postid") String postid);
 }

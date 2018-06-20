@@ -119,4 +119,18 @@ public class Logistics {
     public void setData(List<Details> data) {
         this.data = data;
     }
+
+    @Override
+    public String toString() {
+        return "Logistics{" +
+                "message='" + message + '\'' +
+                ", nu='" + nu + '\'' +
+                ", isCheck='" + ischeck + '\'' +
+                ", com='" + com + '\'' +
+                ", status='" + status + '\'' +
+                ", condition='" + condition + '\'' +
+                ", state='" + state + '\'' +
+                ", data=" + data.size() +
+                '}';
+    }
 }

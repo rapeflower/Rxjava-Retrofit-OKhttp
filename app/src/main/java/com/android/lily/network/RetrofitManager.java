@@ -1,5 +1,6 @@
 package com.android.lily.network;
 
+import com.android.lily.business.ApiService;
 import com.android.lily.utils.Inspect;
 
 import java.util.concurrent.TimeUnit;
@@ -21,6 +22,7 @@ public class RetrofitManager {
     private static final int TIME_OUT = 10;
     private static Retrofit retrofit;
     private static OkHttpClient okHttpClient;
+    private static ApiService apiService;
 
     /**
      * 初始化
@@ -90,5 +92,17 @@ public class RetrofitManager {
     public static Retrofit createRetrofit(String baseUrl) {
         Inspect.asserts((retrofit != null), "Please call the RetrofitManager.init() when your application is started.");
         return buildRetrofit(okHttpClient, baseUrl);
+    }
+
+    /**
+     * ApiService
+     *
+     * @return
+     */
+    public static ApiService getApiService() {
+        if (apiService == null) {
+            apiService = getRetrofit().create(ApiService.class);
+        }
+        return apiService;
     }
 }

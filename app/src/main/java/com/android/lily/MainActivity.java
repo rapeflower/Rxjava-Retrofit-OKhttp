@@ -1,13 +1,14 @@
 package com.android.lily;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
 import com.android.lily.business.ApiService;
 import com.android.lily.model.Logistics;
+import com.android.lily.network.BaseObserver;
 import com.android.lily.network.RetrofitManager;
+import com.android.lily.network.RxSchedulers;
 
 import java.io.IOException;
 
@@ -28,7 +29,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
  * @Date 2018-04-19 14:49
  * @Describe
  */
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends BaseActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName();
 
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity {
      * @param view
      */
     public void request(View view) {
-        getKd_3();
+        getKd_4();
     }
 
     /**
@@ -155,5 +156,19 @@ public class MainActivity extends AppCompatActivity {
 
                     }
                 });
+    }
+
+    /**
+     * 查询快递信息
+     */
+    private void getKd_4() {
+        Observable<Logistics> observable = RetrofitManager.getApiService().hqLogisticsBy("zhongtong", "474944203605");
+        observable.compose(RxSchedulers.compose(this.<Logistics>bindToLifecycle())).subscribe(new BaseObserver<Logistics>(MainActivity.this) {
+
+            @Override
+            protected void onSuccess(Logistics logistics) {
+                Log.w(TAG, "result = " + logistics.toString());
+            }
+        });
     }
 }
