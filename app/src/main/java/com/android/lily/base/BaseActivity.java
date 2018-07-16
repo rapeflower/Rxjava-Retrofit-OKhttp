@@ -1,4 +1,4 @@
-package com.android.lily;
+package com.android.lily.base;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;

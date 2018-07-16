@@ -3,6 +3,8 @@ package com.android.lily;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 
+import com.android.lily.base.BaseActivity;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeUnit;

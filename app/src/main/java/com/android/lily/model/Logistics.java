@@ -17,7 +17,7 @@ public class Logistics {
     private String condition;
     private String state;
     private List<Details> data;
-    private static final class Details {
+    public static final class Details {
         private String time;
         private String ftime;
         private String context;

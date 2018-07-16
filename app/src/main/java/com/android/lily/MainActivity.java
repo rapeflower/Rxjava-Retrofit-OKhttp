@@ -1,9 +1,11 @@
 package com.android.lily;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 
+import com.android.lily.base.BaseActivity;
 import com.android.lily.business.ApiService;
 import com.android.lily.model.Logistics;
 import com.android.lily.network.BaseObserver;
@@ -44,7 +46,8 @@ public class MainActivity extends BaseActivity {
      * @param view
      */
     public void request(View view) {
-        getKd_4();
+        startActivity(new Intent(this, LogisticsActivity.class));
+//        getKd_4();
     }
 
     /**
