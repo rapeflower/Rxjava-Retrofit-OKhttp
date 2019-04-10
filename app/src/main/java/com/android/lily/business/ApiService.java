@@ -1,6 +1,5 @@
 package com.android.lily.business;
 
-import com.android.lily.model.BaseEntity;
 import com.android.lily.model.Logistics;
 
 import io.reactivex.Observable;

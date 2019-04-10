@@ -1,6 +1,5 @@
 package com.android.lily.network;
 
-import com.android.lily.utils.NetworkUtils;
 import com.trello.rxlifecycle2.LifecycleTransformer;
 
 import io.reactivex.Observable;
